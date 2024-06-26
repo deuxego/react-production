@@ -8,15 +8,14 @@ export const useClickOutside = <T extends Node>(
     const listener = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
 
-      if (ref.current) {
-        if (target.contains(ref.current)) {
-          cb();
-        }
+      if (ref.current && !ref.current.contains(target)) {
+        cb();
       }
     };
 
-    document.addEventListener('click', listener);
-
-    return () => document.removeEventListener('click', listener);
+    document.addEventListener('click', listener, true);
+    return () => {
+      document.removeEventListener('click', listener, true);
+    };
   }, [ref, cb]);
 };

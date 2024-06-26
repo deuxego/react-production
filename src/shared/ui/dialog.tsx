@@ -39,7 +39,7 @@ export const DialogTrigger: FC<HTMLAttributes<HTMLDivElement>> = ({
 }) => {
   const { setIsOpen } = useDialogContext();
 
-  return <div {...props} onClick={() => setIsOpen((prev) => !prev)} />;
+  return <div {...props} onClick={() => setIsOpen((prev) => !prev)} className='w-fit'/>;
 };
 
 export const DialogContent: FC<HTMLAttributes<HTMLDivElement>> = ({
@@ -62,7 +62,7 @@ export const DialogContent: FC<HTMLAttributes<HTMLDivElement>> = ({
         <div
           className="absolute min-w-96 min-h-44 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-background rounded-md border border-solid border-input shadow-lg p-6"
           {...props}
-          onClick={e => e.stopPropagation()}
+          onClick={(e) => e.stopPropagation()}
         >
           <X
             onClick={() => setIsOpen(false)}
